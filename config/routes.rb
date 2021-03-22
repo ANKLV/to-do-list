@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   authenticate :user do
     resources :tasks
+    root 'tasks#index'
   end
-  root 'tasks#index'
 end
