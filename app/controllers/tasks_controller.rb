@@ -1,46 +1,56 @@
 class TasksController < ApplicationController
+  before_action :find_task, only: [:show, :update, :destroy, :edit]
+  before_action :set_task, only: [:new, :create]
 
   def index
-    @tasks = Task.where(completed: false).oeder('udated_at')
-    @completed_tasks = Task.where(completed:true).order('udated_at')
+    @tasks = current_user.tasks.where(completed: false).order(updated_at: :desc)
+    @completed_tasks = current_user.tasks.where(completed:true).order('updated_at')
   end
 
   def new
-    @task = Task.new
   end
 
+  def show
+  end
+
+
   def create
-    @task = Task.new task_params
-    @task.save
-    redirect_to task_path
+    if @task.update(task_params)
+      redirect_to tasks_path
+    else
+      render new_task_path
+    end
   end
 
   def edit
-    @task = Task.find params[:id]
   end
 
   def update
-    @task = Task.find params[:id]
     @task.update_attributes task_params
     redirect_to task_path
   end
 
   def complete
-    @task = Task.find params[:id]
     @task.complete!
     redirect_to task_path
   end
 
   def destroy
-    @task = Task.find params[:id]
     @task.destroy
-    redirect_to task_path
+    redirect_to tasks_path
   end
 
   private
 
   def task_params
-    params.require(:task).permit([:title, :completed])
+    params.require(:task).permit(:title, :completed)
   end
 
+  def find_task
+    @task = current_user.tasks.find(params[:id])
+  end
+
+  def set_task
+    @task = current_user.tasks.new
+  end
 end

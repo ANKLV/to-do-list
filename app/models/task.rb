@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
-  belongs_to :User
+  belongs_to :user
+  validates :title, presense: true
 
   def complete!
     self.completed = true
