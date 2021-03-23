@@ -1,14 +1,28 @@
 <div class="col-md-12">
-  <h1>To do list</h1>
-    <%= link_to "New Task", new_task_path, class: 'btn btn-primary' %>
   <h2>Incomplited Tasks</h2>
   <% @tasks.each do |task| %>
-    <%= render partial: 'task', object: task %>
+    <div class="container">
+      <p>
+        <span class="title"><%= task.title %></span>
+        <%= link_to 'Edit', edit_task_path(task), class: 'btn btn-warning btn-sm' %>
+        <%= link_to 'Delete', task_path(task), method: :delete, class: 'btn btn-danger btn-sm' %>
+        <%= link_to 'Complete', task_path(id: task.id, task: {completed: true}), method: :patch, class: 'btn btn-primary btn-sm' %>
+      </p>
+    </div>
   <% end %>
 
   <hr />
 <h2> Completed Tasks </h2>
   <% @completed_tasks.each do |task| %>
-    <%= render partial: 'task', object: task %>
+    <div class="container">
+      <p>
+        <span class="title"><%= task.title %></span>
+        <%= link_to 'Edit', edit_task_path(task), class: 'btn btn-warning btn-sm' %>
+        <%= link_to 'Delete', task_path(task), method: :delete, class: 'btn btn-danger btn-sm' %>
+        <%= link_to 'Complete', task_path(id: task.id, task: {completed: true}), method: :patch, class: 'btn btn-primary btn-sm' %>
+      </p>
+    </div>
   <% end %>
 </div>
+
+<%= link_to "New Task", new_task_path, class: 'btn btn-success' %>
