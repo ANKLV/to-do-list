@@ -1,16 +1,14 @@
 <div class="col-md-12">
-  <h1>My Tasks</h1>
-
-  <%= link_to "New Task", new_task_path, class: 'btn btn-primary' %>
-
+  <h1>To do list</h1>
+    <%= link_to "New Task", new_task_path, class: 'btn btn-primary' %>
+  <h2>Incomplited Tasks</h2>
   <% @tasks.each do |task| %>
     <%= render partial: 'task', object: task %>
   <% end %>
 
   <hr />
-
+<h2> Completed Tasks </h2>
   <% @completed_tasks.each do |task| %>
     <%= render partial: 'task', object: task %>
   <% end %>
-
 </div>
