@@ -1,0 +1,17 @@
+.row.col-sm-6
+  table.table.table-bordered
+    thead
+      tr
+        th
+          | Incompleted
+    tbody
+      = render partial: 'task', collection: @tasks, as: :task
+.row.col-sm-6
+  table.table.table-bordered
+    thead
+      tr
+        th
+          | Completed
+    tbody
+      = render partial: 'task', collection: @completed_tasks, as: :task
+= link_to "New Task", new_task_path, class: 'btn btn-success'
