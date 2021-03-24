@@ -29,7 +29,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to tasks_path
     else
-      render new_task_path
+      render edit_task_path(@task)
     end
   end
 
