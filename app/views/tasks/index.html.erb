@@ -1,16 +1,26 @@
-<div class="col-md-12">
-  <h1>My Tasks</h1>
-
-  <%= link_to "New Task", new_task_path, class: 'btn btn-primary' %>
-
-  <% @tasks.each do |task| %>
-    <%= render partial: 'task', object: task %>
-  <% end %>
-
-  <hr />
-
-  <% @completed_tasks.each do |task| %>
-    <%= render partial: 'task', object: task %>
-  <% end %>
-
+<div class="row col-sm-6">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Incompleted</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'task', collection: @tasks, as: :task %>
+    </tbody>
+  </table>
 </div>
+<div class="row col-sm-6">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Completed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'task', collection: @completed_tasks, as: :task %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to "New Task", new_task_path, class: 'btn btn-success' %>

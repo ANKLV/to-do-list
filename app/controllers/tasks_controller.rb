@@ -26,13 +26,11 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task.update_attributes task_params
-    redirect_to task_path
-  end
-
-  def complete
-    @task.complete!
-    redirect_to task_path
+    if @task.update(task_params)
+      redirect_to tasks_path
+    else
+      render edit_task_path(@task)
+    end
   end
 
   def destroy
