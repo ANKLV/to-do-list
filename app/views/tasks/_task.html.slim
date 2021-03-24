@@ -1,0 +1,10 @@
+tr
+  td
+    span.title
+      = task.title
+  td
+    = link_to task.completed? ? 'Incomplete' : 'Complete', task_path(id: task.id, task: {completed: !task.completed}), method: :patch, class: 'btn btn-primary btn-sm'
+  td
+    = link_to 'Edit', edit_task_path(task), class: 'btn btn-warning btn-sm'
+  td
+    = link_to 'Delete', task_path(task), method: :delete, class: 'btn btn-danger btn-sm'
