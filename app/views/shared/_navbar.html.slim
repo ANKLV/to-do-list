@@ -1,0 +1,9 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    = link_to 'To-Do List', root_path, class: 'navbar-brand'
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+    div[style="color:white;padding:20px"]
+      = current_user&.full_name
+    = link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-success'
+    = render 'shared/search'
