@@ -44,7 +44,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :completed, :search)
+    params.require(:task).permit(:title, :completed)
   end
 
   def find_task
