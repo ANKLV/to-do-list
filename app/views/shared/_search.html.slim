@@ -1,0 +1,4 @@
+= form_with url: tasks_path, class: 'd-flex' ,method: :get do |form|
+  = form.label :search, 'Search for:'
+  = form.text_field :search, value: 'Search', class: 'form-control me-2', 'type' => 'search', 'placeholder' =>'Search', 'aria-label' => 'Search'
+  = form.button 'Search', class: 'btn btn-outline-success'

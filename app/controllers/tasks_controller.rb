@@ -40,7 +40,7 @@ class TasksController < ApplicationController
   private
 
   def by_completed_tasks(value)
-    current_user.tasks.where(completed: value).search(params[:search]).order(updated_at: :desc)
+    current_user.tasks.by_completed(value).search(params[:search]).order(updated_at: :desc)
   end
 
   def task_params
