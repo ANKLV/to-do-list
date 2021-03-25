@@ -3,8 +3,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:new, :create]
 
   def index
-    @tasks = current_user.tasks.where(completed: false).order(updated_at: :desc)
-    @completed_tasks = current_user.tasks.where(completed:true).order('updated_at')
+    @tasks = by_completed_tasks(false)
+    @completed_tasks = by_completed_tasks(true)
   end
 
   def new
@@ -12,7 +12,6 @@ class TasksController < ApplicationController
 
   def show
   end
-
 
   def create
     if @task.update(task_params)
@@ -40,8 +39,12 @@ class TasksController < ApplicationController
 
   private
 
+  def by_completed_tasks(value)
+    current_user.tasks.where(completed: value).search(params[:search]).order(updated_at: :desc)
+  end
+
   def task_params
-    params.require(:task).permit(:title, :completed)
+    params.require(:task).permit(:title, :completed, :search)
   end
 
   def find_task

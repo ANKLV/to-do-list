@@ -3,6 +3,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
     = link_to "To-Do List", root_path, class: "navbar-brand"
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav.me-auto.mb-2.mb-lg-0
-
-  form.d-flex
     = link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-success"
+  = form_with url: tasks_path, method: :get do |form|
+    = form.label :search, "Search for:"
+    = form.text_field :search
+    = form.submit "Search"
